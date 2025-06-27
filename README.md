@@ -35,7 +35,7 @@
 
 Berikut adalah tampilan dokumentasi API yang telah dibuat menggunakan OpenAPI:
 
-![OpenAPI Screenshot](public/doc/Doc OpenAPI_Inventaris.png)
+![OpenAPI Screenshot](doc/Doc%20OpenAPI_Inventaris.png)
 
 ---
 
