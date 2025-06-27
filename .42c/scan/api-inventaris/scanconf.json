@@ -1,0 +1,401 @@
+{
+    "version": "2.0.0",
+    "runtimeConfiguration": {
+        "environment": "default",
+        "laxTestingModeEnabled": false,
+        "apiConnectivityCheck": true,
+        "logLevel": "error",
+        "logDestination": "stdout+platform",
+        "logMaxFileSize": 2147483648,
+        "requestHeaderNameRequestId": "x-scan-request-id",
+        "requestHeaderNameScenarioId": "x-scan-scenario-id",
+        "requestHeaderNameRequestType": "x-scan-request-type",
+        "requestFlowrate": 100,
+        "requestTimeout": 30,
+        "requestTlsInsecureSkipVerify": true,
+        "responseFollowRedirection": false,
+        "responseMaxBodySizeScan": 10485760,
+        "happyPathOnly": false,
+        "maxRequestRetryAttempts": 5,
+        "maxScanDuration": 1800,
+        "memoryLimit": 2147483648,
+        "memoryTimeSpan": 10,
+        "reportMaxRequestSizeHappyPath": 8092,
+        "reportMaxRequestSizeTest": 8092,
+        "reportIncludeRequestBody": true,
+        "reportIncludeResponseBody": true,
+        "reportMaxHttpResponseSizeHappyPath": 8092,
+        "reportMaxBodySizeHappyPath": 8092,
+        "reportMaxHttpResponseSizeTest": 8092,
+        "reportMaxBodySizeTest": 8092,
+        "reportIssuesOnly": false,
+        "reportMaxIssues": 1000,
+        "reportMaxSize": 20971520,
+        "reportGenerateCurlCommand": true,
+        "normalizeServerUrls": true
+    },
+    "customizations": {
+        "happyPaths": {
+            "retry": 1,
+            "responsePolicy": {
+                "httpStatusExpected": true,
+                "mustBeConformant": true
+            },
+            "httpStatusExpected": []
+        },
+        "tests": {
+            "responsePolicy": {
+                "httpStatusExpected": true,
+                "mustBeConformant": true
+            }
+        }
+    },
+    "operations": {
+        "/api/items:get": {
+            "operationId": "/api/items:get",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/~1api~1items:get/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "/api/items:get",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/api/items",
+                        "method": "GET"
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/current:get": {
+            "operationId": "/api/users/current:get",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/~1api~1users~1current:get/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "/api/users/current:get",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/api/users/current",
+                        "method": "GET"
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/login:post": {
+            "operationId": "/api/users/login:post",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/~1api~1users~1login:post/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "/api/users/login:post",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/api/users/login",
+                        "method": "POST",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "password": "xtlhaxtjynkfysvynlnjzybegfulwbzb",
+                                "username": "jltyjhtrojkbactymjcdumplnynuvbbq"
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/logout:delete": {
+            "operationId": "/api/users/logout:delete",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/~1api~1users~1logout:delete/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "/api/users/logout:delete",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/api/users/logout",
+                        "method": "DELETE"
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/register:post": {
+            "operationId": "/api/users/register:post",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/~1api~1users~1register:post/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "/api/users/register:post",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/api/users/register",
+                        "method": "POST",
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "email": "johndoe@gmail.com",
+                                "firstName": "johndoe",
+                                "lastName": "kennedy",
+                                "password": "securepassword123",
+                                "phone": "081234567890",
+                                "role": "pegawai",
+                                "username": "johndoe"
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "201",
+                "responses": {
+                    "201": {
+                        "expectations": {
+                            "httpStatus": 201
+                        }
+                    },
+                    "400": {
+                        "expectations": {
+                            "httpStatus": 400
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{id}:delete": {
+            "operationId": "/api/users/{id}:delete",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/~1api~1users~1{id}:delete/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "/api/users/{id}:delete",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/api/users/{id}",
+                        "method": "DELETE",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": 2317004670220753702
+                            }
+                        ]
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{id}:get": {
+            "operationId": "/api/users/{id}:get",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/~1api~1users~1{id}:get/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "/api/users/{id}:get",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/api/users/{id}",
+                        "method": "GET",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": 6387220995279291500
+                            }
+                        ]
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{id}:patch": {
+            "operationId": "/api/users/{id}:patch",
+            "scenarios": [
+                {
+                    "key": "happy.path",
+                    "fuzzing": true,
+                    "requests": [
+                        {
+                            "$ref": "#/operations/~1api~1users~1{id}:patch/request",
+                            "fuzzing": true
+                        }
+                    ]
+                }
+            ],
+            "request": {
+                "operationId": "/api/users/{id}:patch",
+                "request": {
+                    "type": "42c",
+                    "details": {
+                        "url": "{{host}}/api/users/{id}",
+                        "method": "PATCH",
+                        "paths": [
+                            {
+                                "key": "id",
+                                "value": 1396964848170794662
+                            }
+                        ],
+                        "headers": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "requestBody": {
+                            "mode": "json",
+                            "json": {
+                                "email": "xiuakezeuyttommtfdkoykfrnerrvogf",
+                                "firstName": "pvokthecyjhvwruzbaydqfxpznpcydet",
+                                "lastName": "ouiazucmptmywwskhprqpxxcxgsthefg",
+                                "phone": "jrjmoynebtjdnwkinmtewyyzlxwscwwe",
+                                "username": "jydihmubzxlmfzpmfgrvjzttbqrmfycf"
+                            }
+                        }
+                    }
+                },
+                "defaultResponse": "200",
+                "responses": {
+                    "200": {
+                        "expectations": {
+                            "httpStatus": 200
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "environments": {
+        "default": {
+            "variables": {
+                "host": {
+                    "from": "environment",
+                    "name": "SCAN42C_HOST",
+                    "required": false,
+                    "default": "https://localhost:8000/v1"
+                }
+            }
+        }
+    }
+}
