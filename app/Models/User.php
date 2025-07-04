@@ -56,5 +56,10 @@ class User extends Model implements Authenticatable
         return 'token';
     }
 
+    public function incomingItems()
+    {
+        return $this->hasMany(IncomingItem::class, 'created_by','id');
+    }
+
 }
 

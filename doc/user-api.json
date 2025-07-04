@@ -658,163 +658,62 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Items"
-        ],
-        "summary": "Add new item",
-        "description": "Add a new item to the inventory",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "name",
-                  "description",
-                  "quantity"
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "quantity": {
-                    "type": "number"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Successfully added new item",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "quantity": {
-                          "type": "number"
-                        }
-                      }
-                    },
-                    "errors": {
-                      "type": "object"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch":{
-        "tags": [
-          "Items"
-        ],
-        "summary": "Update item",
-        "description": "Update an existing item in the inventory",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "id",
-                  "name",
-                  "description",
-                  "quantity"
-                ],
-                "properties": {
-                  "id": {
-                    "type": "integer"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "quantity": {
-                    "type": "number"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully updated item",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "number"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "quantity": {
-                          "type": "number"
-                        }
-                      }
-                    },
-                    "errors": {
-                      "type": "object"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/api/items/{id}": {
+      "get": {
+        "tags": [
+          "Items"
+        ],
+        "summary": "Get item details by ID",
+        "description": "Get item details in the inventory",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": { 
+            "description": "Successfully retrieved item details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "quantity": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Items"
@@ -907,6 +806,9 @@
                           "quantity": {
                             "type": "number"
                           },
+                          "created_by":{
+                            "type": "number"
+                          },
                           "created_at": {
                             "type": "string",
                             "format": "date-time"
@@ -950,6 +852,7 @@
                   "name",
                   "description",
                   "quantity",
+                  "created_by",
                   "created_at"
                 ],
                 "properties": {
@@ -966,6 +869,9 @@
                     "type": "string"
                   },
                   "quantity": {
+                    "type": "number"
+                  },
+                  "created_by":{
                     "type": "number"
                   },
                   "created_at": {
@@ -1001,6 +907,9 @@
                           "type": "string"
                         },
                         "quantity": {
+                          "type": "number"
+                        },
+                        "created_by":{
                           "type": "number"
                         },
                         "created_at":{
@@ -1100,6 +1009,7 @@
                   "name",
                   "description",
                   "quantity",
+                  "created_by",
                   "created_at"
                 ],
                 "properties": {
@@ -1110,6 +1020,9 @@
                     "type": "string"
                   },
                   "quantity": {
+                    "type": "number"
+                  },
+                  "created_by":{
                     "type": "number"
                   },
                   "created_at":{
@@ -1146,6 +1059,9 @@
                         },
                         "quantity":{
                           "type":"number"
+                        },
+                        "created_by":{
+                          "type": "number"
                         },
                         "created_at":{
                           "type":"string",

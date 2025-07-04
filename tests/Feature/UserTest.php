@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Item;
+use Database\Seeders\ItemSeeder;
 use Tests\TestCase;
 use App\Models\User;
 use Database\Seeders\UserSeeder;
@@ -142,15 +144,17 @@ class UserTest extends TestCase
     public function testLogoutUnauthorized()
     {
         $this->seed(UserSeeder::class);
-        $this->delete('api/users/logout', [], [
-            'Authorization' => 'salah',
-        ])
+        $this->delete(
+            'api/users/logout',
+            [],
+            [
+                'Authorization' => 'salah',
+            ],
+        )
             ->assertStatus(401)
             ->assertJson([
                 'errors' => [
-                    'message' => [
-                        'Unauthorized',
-                    ],
+                    'message' => ['Unauthorized'],
                 ],
             ]);
     }
@@ -244,6 +248,61 @@ class UserTest extends TestCase
         ]);
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
+        ]);
+    }
+    public function testGetItemsSuccess()
+    {
+        $this->seed([UserSeeder::class, ItemSeeder::class]);
+        $this->get('/api/items', [
+            'Authorization' => 'test',
+        ])
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    [
+                        'name' => 'item 1',
+                        'description' => 'item description 1',
+                        'quantity' => 10,
+                    ],
+                ],
+            ]);
+    }
+
+    public function testGetItemDetails()
+    {
+        $this->seed([UserSeeder::class, ItemSeeder::class]);
+        $item = Item::where('name', 'item 1')->first();
+        $this->get("api/items/{$item->id}", [
+            'Authorization' => 'test',
+        ])
+            ->assertStatus(200)
+            ->assertJson([
+                'data' => [
+                    'name' => 'item 1',
+                    'description' => 'item description 1',
+                    'quantity' => 10,
+                ],
+            ]);
+    }
+
+    public function testDeleteItem()
+    {
+        $this->seed([UserSeeder::class, ItemSeeder::class]);
+        $item = Item::where('name', 'item 1')->first();
+        $this->delete(
+            "api/items/{$item->id}",
+            [],
+            [
+                'Authorization' => 'test',
+            ],
+        )
+            ->assertStatus(200)
+            ->assertJson([
+                'success' => true,
+                'message' => 'Item deleted successfully',
+            ]);
+        $this->assertDatabaseMissing('items', [
+            'id' => $item->id,
         ]);
     }
 }

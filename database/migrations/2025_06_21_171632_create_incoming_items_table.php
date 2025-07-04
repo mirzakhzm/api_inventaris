@@ -17,10 +17,12 @@ return new class extends Migration
             $table->string('name', 100)->nullable(false);
             $table->string('description', 100)->nullable(false);
             $table->string('quantity', 100)->nullable(false);
+            $table->unsignedBigInteger('created_by')->nullable(false);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             
             $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

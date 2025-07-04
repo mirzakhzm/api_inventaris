@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
+
     protected $table = 'items';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;
     public $incrementing = true;
 
-    // public $fillable = [
-    //     'name',
-    //     'description',
-    //     'quantity',
-    // ];
+    public $fillable = [
+        'name',
+        'description',
+        'quantity',
+        'created_by'
+    ];
 
     public function incomingItems()
     {
